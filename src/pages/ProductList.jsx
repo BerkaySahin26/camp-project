@@ -38,7 +38,7 @@ export default function ProductList() {
 
         <TableBody>
           {products.map(product => (
-            <TableRow>
+            <TableRow key={product.id}>
               <TableCell>{product.productName}</TableCell>
               <TableCell>{product.unitPrice}</TableCell>
               <TableCell>{product.unitsInStock}</TableCell>
