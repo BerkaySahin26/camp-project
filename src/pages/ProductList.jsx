@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import {
   TableRow,
   TableHeaderCell,
@@ -8,41 +8,43 @@ import {
   TableBody,
   MenuItem,
   Icon,
-  Label,
   Menu,
   Table,
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
+import ProductService from '../services/productService';
 
 export default function ProductList() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    let productService = new ProductService();
+    productService.getProducts().then(result => {
+      console.log(result); // Gelen veriyi kontrol etmek için
+      setProducts(result.data.data);
+    });
+  }, []); // Bu sadece bileşen ilk render edildiğinde çalışır
+
   return (
     <div>
       <Table celled>
         <TableHeader>
           <TableRow>
-            <TableHeaderCell>Header</TableHeaderCell>
-            <TableHeaderCell>Header</TableHeaderCell>
-            <TableHeaderCell>Header</TableHeaderCell>
+            <TableHeaderCell>Ürün Adı</TableHeaderCell>
+            <TableHeaderCell>Birim Fiyatı</TableHeaderCell>
+            <TableHeaderCell>Stok Adedi</TableHeaderCell>
+            <TableHeaderCell>Kategori Numarası</TableHeaderCell>
           </TableRow>
         </TableHeader>
 
         <TableBody>
-          <TableRow>
-            <TableCell>
-              <Label ribbon>First</Label>
-            </TableCell>
-            <TableCell>Cell</TableCell>
-            <TableCell>Cell</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Cell</TableCell>
-            <TableCell>Cell</TableCell>
-            <TableCell>Cell</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Cell</TableCell>
-            <TableCell>Cell</TableCell>
-            <TableCell>Cell</TableCell>
-          </TableRow>
+          {products.map(product => (
+            <TableRow>
+              <TableCell>{product.productName}</TableCell>
+              <TableCell>{product.unitPrice}</TableCell>
+              <TableCell>{product.unitsInStock}</TableCell>
+              <TableCell>{product.categoryId}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
 
         <TableFooter>
@@ -64,7 +66,6 @@ export default function ProductList() {
           </TableRow>
         </TableFooter>
       </Table>
-
     </div>
-  )
+  );
 }
