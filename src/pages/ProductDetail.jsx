@@ -33,7 +33,7 @@ export default function ProductDetail() {
                             src='/images/avatar/large/steve.jpg'
                         />
                         <Card.Header>{product.productId}</Card.Header>
-                        <Card.Meta>Friends of Elliot</Card.Meta>
+                        <Card.Meta>{product.productName}</Card.Meta>
                         <Card.Description>
                             Steve wants to add you to the group <strong>best friends</strong>
                         </Card.Description>
