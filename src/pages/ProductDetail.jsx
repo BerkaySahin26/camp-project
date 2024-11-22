@@ -19,7 +19,7 @@ export default function ProductDetail() {
             console.log(result); // Gelen veriyi kontrol etmek için
             setProduct(result.data.data);
         });
-    }, []); // Bu sadece bileşen ilk render edildiğinde çalışır
+    }, []); // Bu sadece bileşen ilk render edildiğinde çalışır // değişken değiştiğinde sayfayı yenile..
 
     return (
         <div>
