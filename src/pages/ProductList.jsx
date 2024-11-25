@@ -10,9 +10,13 @@ import {
   Icon,
   Menu,
   Table,
+  Button,
 } from 'semantic-ui-react';
 import ProductService from '../services/productService';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/actions/cartActions';
+import { toast } from 'react-toastify';
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -25,6 +29,12 @@ export default function ProductList() {
     });
   }, []); // Bu sadece bileşen ilk render edildiğinde çalışır
 
+  const dispatch = useDispatch()
+  const handleAddToCart=(product)=> {
+    dispatch(addToCart(product));
+    toast.success(product.productName + ' sepete eklendi!');
+  }
+
   return (
     <div>
       <Table celled>
@@ -34,6 +44,7 @@ export default function ProductList() {
             <TableHeaderCell>Birim Fiyatı</TableHeaderCell>
             <TableHeaderCell>Stok Adedi</TableHeaderCell>
             <TableHeaderCell>Kategori Numarası</TableHeaderCell>
+            <TableHeaderCell></TableHeaderCell>
           </TableRow>
         </TableHeader>
 
@@ -44,6 +55,7 @@ export default function ProductList() {
               <TableCell>{product.unitPrice}</TableCell>
               <TableCell>{product.unitsInStock}</TableCell>
               <TableCell>{product.categoryId}</TableCell>
+              <TableCell><Button onClick={()=>handleAddToCart(product)}>Sepete ekle</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>

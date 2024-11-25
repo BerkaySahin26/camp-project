@@ -12,6 +12,7 @@
     "react-redux": "^8.0.0",
     "react-router-dom": "^7.0.1",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.6",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "semantic-ui-css": "^2.5.0",
