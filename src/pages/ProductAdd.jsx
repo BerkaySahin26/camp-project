@@ -1,7 +1,8 @@
-import { Form, Formik, Field } from 'formik'
+import { Form, Formik, Field, ErrorMessage } from 'formik'
 import React from 'react'
 import * as Yup from "yup"
-import { FormField, Button } from 'semantic-ui-react'
+import { FormField, Button, Label } from 'semantic-ui-react'
+import BrTextInput from '../utilities/customFormControls/BrTextInput'
 
 
 export default function ProductAdd() {
@@ -17,23 +18,15 @@ export default function ProductAdd() {
             <Formik
                 initialValues={initialValues}
                 validationSchema={schema}
-                onSubmit={(values)=>{
+                onSubmit={(values) => {
                     console.log(values)
                 }}
             >
                 <Form className='ui form'>
-                    <FormField>
-                        <Field name='productName' placeholder='Ürün Adı'></Field>
-                    </FormField>
-                    <FormField>
-                        <Field name='unitPrice' placeholder='Ürün Fiyatı'></Field>
-                    </FormField>
-                    <FormField>
-                        <Field name='unitsInStock' placeholder='Ürün Stok'></Field>
-                    </FormField>
-                    <FormField>
-                        <Field name='categoryId' placeholder='Kategori'></Field>
-                    </FormField>
+                <BrTextInput name='productName' placeholder='Ürün Adı'/>
+                <BrTextInput name='unitPrice' placeholder='Ürün Fiyatı'/>   
+                <BrTextInput name='unitsInStock' placeholder='Ürün Stok'/>
+                <BrTextInput name='categoryId' placeholder='Kategori'/>
                     <Button color='green' type='submit'> Ekle</Button>
                 </Form>
             </Formik>
