@@ -16,15 +16,16 @@ export default function Categories() {
   }, []);
   return (
     <div>
+     <Menu pointing vertical>
     {categories.map(category => (
-      <Menu pointing vertical>
+      
         <MenuItem
           name={category.categoryName}
         
         />
-      </Menu>
+     
     ))}
-  
+    </Menu>
      </div>
   )
 }
