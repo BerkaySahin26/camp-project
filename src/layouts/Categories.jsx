@@ -19,7 +19,7 @@ export default function Categories() {
      <Menu pointing vertical>
     {categories.map(category => (
       
-        <MenuItem
+        <MenuItem 
           name={category.categoryName}
         
         />
